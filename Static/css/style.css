@@ -831,6 +831,15 @@ body.modal-open {
     justify-content: center;
   }
 
+  .email-action,
+  .email-action .copy-email {
+    width: 100%;
+  }
+
+  .email-action .copy-email {
+    justify-content: center;
+  }
+
   .skill-list span {
     margin-top: 10px;
     padding: 8px 16px;
