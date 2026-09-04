@@ -246,15 +246,6 @@ if (previewDots.length) {
     });
   });
 }
-function closeMenuOnScroll() {
-  if (navbar?.classList.contains("is-open")) {
-    setMobileMenu(false);
-  }
-}
-  
-window.addEventListener("scroll", closeMenuOnScroll, { passive: true });
-window.addEventListener("wheel", closeMenuOnScroll, { passive: true });
-window.addEventListener("touchmove", closeMenuOnScroll, { passive: true });
 function movePreview(step) {
   const total = stackCards.length;
 

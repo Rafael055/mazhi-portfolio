@@ -14,6 +14,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -22,6 +23,7 @@ body {
   color: var(--text);
   background: var(--bg);
   min-height: 100vh;
+  overflow-x: clip;
 }
 
 a {
@@ -860,10 +862,6 @@ body.modal-open {
   .nav-backdrop.is-visible {
     opacity: 1;
     pointer-events: auto;
-  }
-
-  body.nav-open {
-    overflow: hidden;
   }
 
   .profile-photo {
