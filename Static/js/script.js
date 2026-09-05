@@ -38,10 +38,18 @@ function setActiveNavLink() {
   });
 }
 
+function closeMobileMenuOnScroll() {
+  if (window.matchMedia("(max-width: 900px)").matches && navbar?.classList.contains("is-open")) {
+    setMobileMenu(false);
+  }
+}
+
 if (navLinks.length) {
   setActiveNavLink();
   window.addEventListener("scroll", setActiveNavLink, { passive: true });
 }
+
+window.addEventListener("scroll", closeMobileMenuOnScroll, { passive: true });
 
 const emailLink = document.querySelector(".copy-email");
 const copyStatus = document.querySelector(".copy-status");
