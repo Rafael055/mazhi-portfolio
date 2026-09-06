@@ -669,6 +669,62 @@ body.modal-open {
   margin-top: 14px;
 }
 
+.contact-section {
+  min-height: auto;
+  padding-bottom: 90px;
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.7fr);
+  gap: clamp(32px, 8vw, 110px);
+  align-items: center;
+  margin-top: 32px;
+}
+
+.contact-copy > p {
+  max-width: 34rem;
+  font-size: clamp(1.25rem, 2.4vw, 2rem);
+  line-height: 1.35;
+}
+
+.contact-note {
+  padding: 24px 26px;
+  border-left: 2px solid var(--accent);
+  background: linear-gradient(105deg, rgba(181, 39, 39, 0.1), transparent);
+}
+
+.contact-note-label,
+.contact-note-status {
+  color: #d6d3d1;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.contact-note h3 {
+  margin: 10px 0 8px;
+  color: var(--accent);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.contact-note p {
+  margin-bottom: 20px;
+}
+
+.contact-note-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  font-size: 0.75rem;
+}
+
+.contact-note-status i {
+  color: #45b96b;
+  font-size: 0.55rem;
+}
+
 .contact-links a {
   display: inline-flex;
   align-items: center;
@@ -911,6 +967,16 @@ body.modal-open {
 
   .contact-links {
     flex-direction: column;
+  }
+
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-top: 24px;
+  }
+
+  .contact-note {
+    padding: 20px;
   }
 
   .contact-links a {
