@@ -174,6 +174,8 @@ const projectModal = document.getElementById("projectModal");
 const modalTitle = document.getElementById("projectModalTitle");
 const carouselImage = document.getElementById("carouselImage");
 const carouselDescription = document.getElementById("carouselDescription");
+const carouselFrame = document.querySelector(".carousel-frame");
+const swipeHint = document.querySelector(".swipe-hint");
 const modalDots = document.querySelectorAll(".modal-dot");
 const carouselPrev = document.getElementById("carouselPrev");
 const carouselNext = document.getElementById("carouselNext");
@@ -183,6 +185,8 @@ const modalBackdrop = document.querySelector("[data-close-modal]");
 let activeProjectKey = "";
 let activeSlideIndex = 0;
 let previewCenterIndex = 0;
+let touchStartX = 0;
+let touchStartY = 0;
 
 function updateModalDots() {
   const project = projectData[activeProjectKey];
@@ -297,6 +301,7 @@ function openProjectModal(projectKey) {
   activeProjectKey = projectKey;
   activeSlideIndex = 0;
   updateCarousel();
+  swipeHint?.classList.remove("is-dismissed");
 
   projectModal.classList.add("open");
   projectModal.setAttribute("aria-hidden", "false");
@@ -323,6 +328,35 @@ function showNextSlide(step) {
   const totalSlides = project.slides.length;
   activeSlideIndex = (activeSlideIndex + step + totalSlides) % totalSlides;
   updateCarousel();
+}
+
+if (carouselFrame) {
+  carouselFrame.addEventListener(
+    "touchstart",
+    (event) => {
+      const [touch] = event.touches;
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+    },
+    { passive: true }
+  );
+
+  carouselFrame.addEventListener(
+    "touchend",
+    (event) => {
+      const [touch] = event.changedTouches;
+      const distanceX = touch.clientX - touchStartX;
+      const distanceY = touch.clientY - touchStartY;
+
+      if (Math.abs(distanceX) < 45 || Math.abs(distanceX) <= Math.abs(distanceY)) {
+        return;
+      }
+
+      showNextSlide(distanceX < 0 ? 1 : -1);
+      swipeHint?.classList.add("is-dismissed");
+    },
+    { passive: true }
+  );
 }
 
 stackCards.forEach((card, index) => {

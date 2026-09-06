@@ -684,8 +684,19 @@ main {
   color: var(--accent);
 }
 
+@media (max-width: 900px) {
+  .project-carousel {
+    grid-template-columns: 1fr;
+  }
+
+  .carousel-arrow {
+    display: none;
+  }
+}
+
 .carousel-frame {
   margin: 0;
+  touch-action: pan-y;
 }
 
 .carousel-frame img {
@@ -700,6 +711,46 @@ main {
   margin-top: 10px;
   color: #e7e5e4;
   line-height: 1.6;
+}
+
+.swipe-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  color: #d6d3d1;
+  font-size: 0.78rem;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.swipe-hint i {
+  color: var(--accent);
+}
+
+.project-modal.open .swipe-hint {
+  animation: swipeHint 2.4s ease-in-out 0.35s 2;
+}
+
+.swipe-hint.is-dismissed {
+  display: none;
+}
+
+@keyframes swipeHint {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  25%,
+  65% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 1;
+    transform: translateX(16px);
+  }
 }
 
 body.modal-open {
@@ -1080,11 +1131,6 @@ body.modal-open {
   .project-carousel {
     grid-template-columns: 1fr;
     gap: 12px;
-  }
-
-  .carousel-arrow {
-    width: 100%;
-    border-radius: 10px;
   }
 }
 #skill h2 {
