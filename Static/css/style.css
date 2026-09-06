@@ -368,13 +368,57 @@ main {
   color: #e4e4e7;
 }
 
-.projects-intro {
-  margin-bottom: 18px;
+.project-carousel-guide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 4px 0 8px;
   color: #d6d3d1;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.project-carousel-guide i:first-child,
+.project-carousel-guide i:last-child {
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.project-stack-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.preview-arrow {
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.preview-arrow:hover,
+.preview-arrow:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+  outline: none;
+  transform: scale(1.08);
 }
 
 .project-stack-grid {
   position: relative;
+  flex: 1;
   height: clamp(230px, 34vw, 360px);
   margin-top: 8px;
   overflow: hidden;
@@ -999,6 +1043,16 @@ body.modal-open {
 
   .project-stack-grid {
     height: clamp(220px, 60vw, 280px);
+  }
+
+  .project-stack-stage {
+    gap: 6px;
+  }
+
+  .preview-arrow {
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
   }
 
   .project-stack-card {

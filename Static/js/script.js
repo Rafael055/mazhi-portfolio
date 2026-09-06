@@ -168,12 +168,12 @@ const projectData = {
 
 const stackCards = document.querySelectorAll(".project-stack-card");
 const previewDots = document.querySelectorAll(".preview-dot");
-const previewNext = document.getElementById("previewNext");
+const previewPrev = document.querySelector(".preview-arrow-prev");
+const previewNext = document.querySelector(".preview-arrow-next");
 const projectModal = document.getElementById("projectModal");
 const modalTitle = document.getElementById("projectModalTitle");
 const carouselImage = document.getElementById("carouselImage");
 const carouselDescription = document.getElementById("carouselDescription");
-const carouselCounter = document.getElementById("carouselCounter");
 const modalDots = document.querySelectorAll(".modal-dot");
 const carouselPrev = document.getElementById("carouselPrev");
 const carouselNext = document.getElementById("carouselNext");
@@ -265,11 +265,6 @@ function movePreview(step) {
   renderProjectPreview();
 }
 
-function advancePreview() {
-  previewCenterIndex += 1;
-  renderProjectPreview();
-}
-
 function updateCarousel() {
   const project = projectData[activeProjectKey];
 
@@ -346,6 +341,9 @@ stackCards.forEach((card, index) => {
 });
 
 renderProjectPreview();
+
+previewPrev?.addEventListener("click", () => movePreview(-1));
+previewNext?.addEventListener("click", () => movePreview(1));
 
 if (carouselPrev) {
   carouselPrev.addEventListener("click", () => showNextSlide(-1));

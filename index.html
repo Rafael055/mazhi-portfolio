@@ -157,83 +157,103 @@
 
       <section id="acadprojects" class="flat-section">
         <h2>Academic Projects</h2>
-        <p class="projects-intro">
-          Use the arrows to browse projects. The center slide is active and
-          clickable.
-        </p>
-        <div class="project-stack-grid">
+       
+        <div class="project-carousel-guide" aria-hidden="true">
+          <i class="fa-regular fa-hand-pointer"></i>
+          <span>Click to explore</span>
+          <i class="fa-solid fa-arrows-left-right"></i>
+        </div>
+        <div class="project-stack-stage">
           <button
-            class="project-stack-card"
+            class="preview-arrow preview-arrow-prev"
             type="button"
-            data-project="potatoliz"
+            aria-label="Show previous project"
           >
-            <img
-              src="./Static/img/PotatoLizLogIn.jpg"
-              alt="PotatoLiz login screen"
-              class="project-cover"
-            />
-            <span class="project-card-title">PotatoLiz - POS System</span>
-            <span class="project-view-hint">
-              <i class="fa-solid fa-eye"></i>
-              <span>View Project</span>
-            </span>
+            <i class="fa-solid fa-chevron-left"></i>
           </button>
 
-          <button
-            class="project-stack-card"
-            type="button"
-            data-project="dentaliz"
-          >
-            <img
-              src="./Static/img/DentaLizDashBoard.jpg"
-              alt="DentaLiz dashboard"
-              class="project-cover"
-            />
-            <span class="project-card-title"
-              >DentaLiz - Dental Practice Management</span
+          <div class="project-stack-grid">
+            <button
+              class="project-stack-card"
+              type="button"
+              data-project="potatoliz"
             >
-            <span class="project-view-hint">
-              <i class="fa-solid fa-eye"></i>
-              <span>View Project</span>
-            </span>
-          </button>
+              <img
+                src="./Static/img/PotatoLizLogIn.jpg"
+                alt="PotatoLiz login screen"
+                class="project-cover"
+              />
+              <span class="project-card-title">PotatoLiz - POS System</span>
+              <span class="project-view-hint">
+                <i class="fa-solid fa-eye"></i>
+                <span>View Project</span>
+              </span>
+            </button>
+
+            <button
+              class="project-stack-card"
+              type="button"
+              data-project="dentaliz"
+            >
+              <img
+                src="./Static/img/DentaLizDashBoard.jpg"
+                alt="DentaLiz dashboard"
+                class="project-cover"
+              />
+              <span class="project-card-title"
+                >DentaLiz - Dental Practice Management</span
+              >
+              <span class="project-view-hint">
+                <i class="fa-solid fa-eye"></i>
+                <span>View Project</span>
+              </span>
+            </button>
+
+            <button
+              class="project-stack-card"
+              type="button"
+              data-project="reeliz"
+            >
+              <img
+                src="./Static/img/ReelizHome.png"
+                alt="ReeLiz home page"
+                class="project-cover"
+              />
+              <span class="project-view-hint">
+                <i class="fa-solid fa-eye"></i>
+                <span>View Project</span>
+              </span>
+              <span class="project-card-title"
+                >ReeLiz - Movie Listing and Booking</span
+              >
+            </button>
+
+            <button
+              class="project-stack-card"
+              type="button"
+              data-project="nutriliz"
+            >
+              <img
+                src="./Static/img/NutriLizHome.jpg"
+                alt="NutriLiz home screen"
+                class="project-cover"
+              />
+              <span class="project-view-hint">
+                <i class="fa-solid fa-eye"></i>
+                <span>View Project</span>
+              </span>
+              <span class="project-card-title"
+                >NutriLiz - Mobile App and Kiosk</span
+              >
+            </button>
+          </div>
 
           <button
-            class="project-stack-card"
+            class="preview-arrow preview-arrow-next"
             type="button"
-            data-project="reeliz"
+            aria-label="Show next project"
           >
-            <img
-              src="./Static/img/ReelizHome.png"
-              alt="ReeLiz home page"
-              class="project-cover"
-            />
-            <span class="project-view-hint">
-              <i class="fa-solid fa-eye"></i>
-              <span>View Project</span>
-            </span>
-            <span class="project-card-title"
-              >ReeLiz - Movie Listing and Booking</span
-            >
-          </button>
-
-          <button
-            class="project-stack-card"
-            type="button"
-            data-project="nutriliz"
-          >
-            <img
-              src="./Static/img/NutriLizHome.jpg"
-              alt="NutriLiz home screen"
-              class="project-cover"
-            />
-            <span class="project-view-hint">
-              <i class="fa-solid fa-eye"></i>
-              <span>View Project</span>
-            </span>
-            <span class="project-card-title"
-              >NutriLiz - Mobile App and Kiosk</span
-            >
+            <i class="fa-solid fa-chevron-right"></i>
           </button>
         </div>
 
