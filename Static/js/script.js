@@ -170,6 +170,7 @@ const stackCards = document.querySelectorAll(".project-stack-card");
 const previewDots = document.querySelectorAll(".preview-dot");
 const previewPrev = document.querySelector(".preview-arrow-prev");
 const previewNext = document.querySelector(".preview-arrow-next");
+const projectStackGrid = document.querySelector(".project-stack-grid");
 const projectModal = document.getElementById("projectModal");
 const modalTitle = document.getElementById("projectModalTitle");
 const carouselImage = document.getElementById("carouselImage");
@@ -187,6 +188,8 @@ let activeSlideIndex = 0;
 let previewCenterIndex = 0;
 let touchStartX = 0;
 let touchStartY = 0;
+let previewTouchStartX = 0;
+let previewTouchStartY = 0;
 
 function updateModalDots() {
   const project = projectData[activeProjectKey];
@@ -194,7 +197,11 @@ function updateModalDots() {
   if (!project || !modalDots.length) return;
 
   modalDots.forEach((dot, index) => {
+    const isAvailable = index < project.slides.length;
     const isActive = index === activeSlideIndex;
+    dot.hidden = !isAvailable;
+    dot.disabled = !isAvailable;
+    dot.setAttribute("aria-hidden", String(!isAvailable));
     dot.classList.toggle("is-active", isActive);
     dot.setAttribute("aria-current", isActive ? "true" : "false");
   });
@@ -267,6 +274,35 @@ function movePreview(step) {
 
   previewCenterIndex = normalizePreviewIndex(previewCenterIndex + step, total);
   renderProjectPreview();
+}
+
+if (projectStackGrid) {
+  projectStackGrid.addEventListener(
+    "touchstart",
+    (event) => {
+      const [touch] = event.touches;
+      previewTouchStartX = touch.clientX;
+      previewTouchStartY = touch.clientY;
+    },
+    { passive: true }
+  );
+
+  projectStackGrid.addEventListener(
+    "touchend",
+    (event) => {
+      const [touch] = event.changedTouches;
+      const distanceX = touch.clientX - previewTouchStartX;
+      const distanceY = touch.clientY - previewTouchStartY;
+
+      if (Math.abs(distanceX) < 45 || Math.abs(distanceX) <= Math.abs(distanceY)) {
+        return;
+      }
+
+      movePreview(distanceX < 0 ? 1 : -1);
+      document.querySelector(".project-carousel-guide")?.classList.add("is-dismissed");
+    },
+    { passive: true }
+  );
 }
 
 function updateCarousel() {

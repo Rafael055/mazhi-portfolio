@@ -160,8 +160,9 @@
 
         <div class="project-carousel-guide" aria-hidden="true">
           <i class="fa-regular fa-hand-pointer"></i>
-          <span>Click to explore</span>
-          <i class="fa-solid fa-arrows-left-right"></i>
+          <span class="guide-desktop">Click to explore</span>
+          <i class="guide-desktop fa-solid fa-arrows-left-right"></i>
+          <span class="guide-mobile">Swipe to explore</span>
         </div>
         <div class="project-stack-stage">
           <button
@@ -416,6 +417,13 @@
             type="button"
             data-index="2"
             aria-label="Go to slide 3"
+            aria-current="false"
+          ></button>
+          <button
+            class="modal-dot"
+            type="button"
+            data-index="3"
+            aria-label="Go to slide 4"
             aria-current="false"
           ></button>
         </div>

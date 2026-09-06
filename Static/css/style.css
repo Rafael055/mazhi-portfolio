@@ -372,7 +372,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   margin: 4px 0 8px;
   color: #d6d3d1;
   font-size: 0.85rem;
@@ -380,10 +380,33 @@ main {
   text-transform: uppercase;
 }
 
-.project-carousel-guide i:first-child,
-.project-carousel-guide i:last-child {
+.project-carousel-guide i {
   color: var(--accent);
   font-size: 1rem;
+}
+
+.guide-mobile {
+  display: none;
+}
+
+.project-carousel-guide.is-dismissed {
+  display: none;
+}
+
+@keyframes projectSwipeHint {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateX(0);
+  }
+  25%,
+  65% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 1;
+    transform: translateX(16px);
+  }
 }
 
 .project-stack-stage {
@@ -422,6 +445,7 @@ main {
   height: clamp(230px, 34vw, 360px);
   margin-top: 8px;
   overflow: hidden;
+  touch-action: pan-y;
 }
 
 .project-stack-card {
@@ -692,6 +716,10 @@ main {
   .carousel-arrow {
     display: none;
   }
+
+  .project-modal.open .swipe-hint {
+    animation: swipeHint 2.4s ease-in-out 0.35s 2;
+  }
 }
 
 .carousel-frame {
@@ -727,10 +755,6 @@ main {
 
 .swipe-hint i {
   color: var(--accent);
-}
-
-.project-modal.open .swipe-hint {
-  animation: swipeHint 2.4s ease-in-out 0.35s 2;
 }
 
 .swipe-hint.is-dismissed {
@@ -1100,12 +1124,6 @@ body.modal-open {
     gap: 6px;
   }
 
-  .preview-arrow {
-    flex-basis: 34px;
-    width: 34px;
-    height: 34px;
-  }
-
   .project-stack-card {
     width: min(360px, 82%);
   }
@@ -1131,6 +1149,18 @@ body.modal-open {
   .project-carousel {
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+}
+
+@media (max-width: 900px) {
+  .guide-desktop,
+  .preview-arrow {
+    display: none;
+  }
+
+  .guide-mobile {
+    display: inline;
+    animation: projectSwipeHint 2.4s ease-in-out 0.35s 2;
   }
 }
 #skill h2 {
