@@ -380,7 +380,7 @@ function scheduleSwipeHint() {
       void swipeHint.offsetWidth;
       swipeHint.classList.add("is-reminding");
     }
-  }, 1000);
+  }, 2000);
 }
 
 modalDots.forEach((dot) => {
