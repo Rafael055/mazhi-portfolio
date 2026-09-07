@@ -179,6 +179,7 @@ let touchStartX = 0;
 let touchStartY = 0;
 let previewTouchStartX = 0;
 let previewTouchStartY = 0;
+let swipeHintTimer;
 const dentalizPreviewImage = document.getElementById("dentalizPreviewImage");
 const dentalizPreviewCaption = document.getElementById("dentalizPreviewCaption");
 const dentalizSlideCount = document.getElementById("dentalizSlideCount");
@@ -334,7 +335,7 @@ if (projectStackGrid) {
   );
 }
 
-function updateCarousel() {
+function updateCarousel(direction = 1) {
   const project = projectData[activeProjectKey];
 
   if (!project) {
@@ -345,6 +346,10 @@ function updateCarousel() {
   modalTitle.textContent = project.title;
   carouselImage.src = slide.src;
   carouselImage.alt = slide.alt;
+  carouselImage.classList.remove("is-changing");
+  carouselImage.style.setProperty("--slide-direction", `${direction < 0 ? "-" : ""}22px`);
+  void carouselImage.offsetWidth;
+  carouselImage.classList.add("is-changing");
 
   if (dentalizModalDetails) {
     const isDentaliz = activeProjectKey === "dentaliz";
@@ -361,6 +366,21 @@ function updateCarousel() {
   }
 
   updateModalDots();
+}
+
+function scheduleSwipeHint() {
+  if (!swipeHint) return;
+
+  window.clearTimeout(swipeHintTimer);
+  swipeHint.classList.add("is-dismissed");
+  swipeHintTimer = window.setTimeout(() => {
+    if (projectModal?.classList.contains("open")) {
+      swipeHint.classList.remove("is-dismissed");
+      swipeHint.classList.remove("is-reminding");
+      void swipeHint.offsetWidth;
+      swipeHint.classList.add("is-reminding");
+    }
+  }, 1000);
 }
 
 modalDots.forEach((dot) => {
@@ -394,6 +414,7 @@ function closeProjectModal() {
   projectModal.classList.remove("open");
   projectModal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");
+  window.clearTimeout(swipeHintTimer);
 }
 
 function showNextSlide(step) {
@@ -405,7 +426,7 @@ function showNextSlide(step) {
 
   const totalSlides = project.slides.length;
   activeSlideIndex = (activeSlideIndex + step + totalSlides) % totalSlides;
-  updateCarousel();
+  updateCarousel(step);
 }
 
 if (carouselFrame) {
@@ -431,7 +452,7 @@ if (carouselFrame) {
       }
 
       showNextSlide(distanceX < 0 ? 1 : -1);
-      swipeHint?.classList.add("is-dismissed");
+      scheduleSwipeHint();
     },
     { passive: true }
   );
@@ -458,11 +479,17 @@ previewPrev?.addEventListener("click", () => movePreview(-1));
 previewNext?.addEventListener("click", () => movePreview(1));
 
 if (carouselPrev) {
-  carouselPrev.addEventListener("click", () => showNextSlide(-1));
+  carouselPrev.addEventListener("click", () => {
+    showNextSlide(-1);
+    scheduleSwipeHint();
+  });
 }
 
 if (carouselNext) {
-  carouselNext.addEventListener("click", () => showNextSlide(1));
+  carouselNext.addEventListener("click", () => {
+    showNextSlide(1);
+    scheduleSwipeHint();
+  });
 }
 
 if (modalDots.length) {
@@ -471,6 +498,7 @@ if (modalDots.length) {
       const chosenIndex = Number(dot.dataset.index);
       activeSlideIndex = chosenIndex;
       updateCarousel();
+      scheduleSwipeHint();
     });
   });
 }
