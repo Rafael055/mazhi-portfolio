@@ -970,6 +970,7 @@ main {
   }
 
   .project-modal.open .swipe-hint {
+    display: flex;
     animation: swipeHint 2.4s ease-in-out 0.5s 2;
   }
 }
@@ -1011,7 +1012,7 @@ main {
 }
 
 .swipe-hint {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   gap: 8px;
