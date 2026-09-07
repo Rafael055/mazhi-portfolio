@@ -168,6 +168,9 @@ const carouselNext = document.getElementById("carouselNext");
 const modalClose = document.querySelector(".modal-close");
 const modalBackdrop = document.querySelector("[data-close-modal]");
 const dentalizModalDetails = document.getElementById("dentalizModalDetails");
+const nutrilizModalDetails = document.getElementById("nutrilizModalDetails");
+const reelizModalDetails = document.getElementById("reelizModalDetails");
+const potatolizModalDetails = document.getElementById("potatolizModalDetails");
 
 let activeProjectKey = "";
 let activeSlideIndex = 0;
@@ -346,7 +349,15 @@ function updateCarousel() {
   if (dentalizModalDetails) {
     const isDentaliz = activeProjectKey === "dentaliz";
     dentalizModalDetails.hidden = !isDentaliz;
-    projectModal.classList.toggle("is-dentaliz", isDentaliz);
+  }
+  if (nutrilizModalDetails) {
+    nutrilizModalDetails.hidden = activeProjectKey !== "nutriliz";
+  }
+  if (reelizModalDetails) {
+    reelizModalDetails.hidden = activeProjectKey !== "reeliz";
+  }
+  if (potatolizModalDetails) {
+    potatolizModalDetails.hidden = activeProjectKey !== "potatoliz";
   }
 
   updateModalDots();
