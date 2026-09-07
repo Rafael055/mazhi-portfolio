@@ -78,19 +78,16 @@ const projectData = {
     title: "PotatoLiz",
     slides: [
       {
-        src: "../Static/img/PotatoLizLogIn.jpg",
+        src: "./Static/img/PotatoLizLogIn.jpg",
         alt: "PotatoLiz login page",
-        description: "Secure login screen for staff access and role-based entry.",
       },
       {
-        src: "../Static/img/PotatolizDashBoard.png",
+        src: "./Static/img/PotatolizDashBoard.png",
         alt: "PotatoLiz dashboard",
-        description: "Main dashboard showing quick business metrics and actions.",
       },
       {
-        src: "../Static/img/PotatolizRecieptPreview.png",
+        src: "./Static/img/PotatolizRecieptPreview.png",
         alt: "PotatoLiz receipt preview",
-        description: "Receipt preview module before finalizing each transaction.",
       },
     ],
   },
@@ -98,19 +95,16 @@ const projectData = {
     title: "DentaLiz",
     slides: [
       {
-        src: "../Static/img/DentaLizDashBoard.jpg",
+        src: "./Static/img/DentaLizDashBoard.jpg",
         alt: "DentaLiz dashboard",
-        description: "Clinic dashboard with an overview of appointments and records.",
       },
       {
-        src: "../Static/img/DentaLiz Graph.jpg",
+        src: "./Static/img/DentaLiz Graph.jpg",
         alt: "DentaLiz analytics graph",
-        description: "Visual analytics graph for clinic performance and trends.",
       },
       {
-        src: "../Static/img/DentaLizProfit.jpg",
+        src: "./Static/img/DentaLizProfit.jpg",
         alt: "DentaLiz profit report",
-        description: "Profit report page for tracking earnings and business growth.",
       },
     ],
   },
@@ -118,24 +112,20 @@ const projectData = {
     title: "ReeLiz",
     slides: [
       {
-        src: "../Static/img/ReelizHome.png",
+        src: "./Static/img/ReelizHome.png",
         alt: "ReeLiz home page",
-        description: "Landing page showcasing featured movies and categories.",
       },
       {
-        src: "../Static/img/ReelizSignUp.png",
+        src: "./Static/img/ReelizSignUp.png",
         alt: "ReeLiz sign up page",
-        description: "User sign-up experience for account creation and onboarding.",
       },
       {
-        src: "../Static/img/ReeLiz1.png",
+        src: "./Static/img/ReeLiz1.png",
         alt: "ReeLiz movie listing",
-        description: "Movie listing interface with browsing and quick viewing options.",
       },
       {
-        src: "../Static/img/ReeLizBooking.png",
+        src: "./Static/img/ReeLizBooking.png",
         alt: "ReeLiz booking flow",
-        description: "Ticket booking flow for selecting schedules and seats.",
       },
     ],
   },
@@ -143,24 +133,20 @@ const projectData = {
     title: "NutriLiz",
     slides: [
       {
-        src: "../Static/img/NutriLizHome.jpg",
+        src: "./Static/img/NutriLizHome.jpg",
         alt: "NutriLiz home screen",
-        description: "Home screen for daily health tracking and reminders.",
       },
       {
-        src: "../Static/img/NutriLizImage.jpg",
+        src: "./Static/img/NutriLizImage.jpg",
         alt: "NutriLiz food image logger",
-        description: "Image-based logging view to monitor meals and food choices.",
       },
       {
-        src: "../Static/img/NutriLizBarcode.jpg",
+        src: "./Static/img/NutriLizBarcode.jpg",
         alt: "NutriLiz barcode scanner",
-        description: "Barcode scanner to quickly capture nutritional product data.",
       },
       {
-        src: "../Static/img/NutriLizHistory.jpg",
+        src: "./Static/img/NutriLizHistory.jpg",
         alt: "NutriLiz history screen",
-        description: "History page for reviewing previous logs and user progress.",
       },
     ],
   },
@@ -174,7 +160,6 @@ const projectStackGrid = document.querySelector(".project-stack-grid");
 const projectModal = document.getElementById("projectModal");
 const modalTitle = document.getElementById("projectModalTitle");
 const carouselImage = document.getElementById("carouselImage");
-const carouselDescription = document.getElementById("carouselDescription");
 const carouselFrame = document.querySelector(".carousel-frame");
 const swipeHint = document.querySelector(".swipe-hint");
 const modalDots = document.querySelectorAll(".modal-dot");
@@ -182,6 +167,7 @@ const carouselPrev = document.getElementById("carouselPrev");
 const carouselNext = document.getElementById("carouselNext");
 const modalClose = document.querySelector(".modal-close");
 const modalBackdrop = document.querySelector("[data-close-modal]");
+const dentalizModalDetails = document.getElementById("dentalizModalDetails");
 
 let activeProjectKey = "";
 let activeSlideIndex = 0;
@@ -190,6 +176,46 @@ let touchStartX = 0;
 let touchStartY = 0;
 let previewTouchStartX = 0;
 let previewTouchStartY = 0;
+const dentalizPreviewImage = document.getElementById("dentalizPreviewImage");
+const dentalizPreviewCaption = document.getElementById("dentalizPreviewCaption");
+const dentalizSlideCount = document.getElementById("dentalizSlideCount");
+const dentalizDots = document.querySelectorAll(".dentaliz-dot");
+const dentalizPreviewPrev = document.querySelector(".dentaliz-slide-prev");
+const dentalizPreviewNext = document.querySelector(".dentaliz-slide-next");
+
+function updateDentalizPreview() {
+  const slides = projectData.dentaliz.slides;
+  const slide = slides[activeSlideIndex % slides.length];
+
+  if (!dentalizPreviewImage || !dentalizPreviewCaption) return;
+
+  dentalizPreviewImage.src = slide.src;
+  dentalizPreviewImage.alt = slide.alt;
+  dentalizPreviewCaption.textContent = slide.description;
+  if (dentalizSlideCount) {
+    dentalizSlideCount.textContent = `${String(activeSlideIndex + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
+  }
+  dentalizDots.forEach((dot, index) => {
+    const isActive = index === activeSlideIndex;
+    dot.classList.toggle("is-active", isActive);
+    dot.setAttribute("aria-current", isActive ? "true" : "false");
+  });
+}
+
+function moveDentalizPreview(step) {
+  activeSlideIndex = (activeSlideIndex + step + projectData.dentaliz.slides.length) % projectData.dentaliz.slides.length;
+  updateDentalizPreview();
+}
+
+dentalizPreviewPrev?.addEventListener("click", () => moveDentalizPreview(-1));
+dentalizPreviewNext?.addEventListener("click", () => moveDentalizPreview(1));
+dentalizDots.forEach((dot) => {
+  dot.addEventListener("click", () => {
+    activeSlideIndex = Number(dot.dataset.index);
+    updateDentalizPreview();
+  });
+});
+updateDentalizPreview();
 
 function updateModalDots() {
   const project = projectData[activeProjectKey];
@@ -316,7 +342,12 @@ function updateCarousel() {
   modalTitle.textContent = project.title;
   carouselImage.src = slide.src;
   carouselImage.alt = slide.alt;
-  carouselDescription.textContent = slide.description;
+
+  if (dentalizModalDetails) {
+    const isDentaliz = activeProjectKey === "dentaliz";
+    dentalizModalDetails.hidden = !isDentaliz;
+    projectModal.classList.toggle("is-dentaliz", isDentaliz);
+  }
 
   updateModalDots();
 }

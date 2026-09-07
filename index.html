@@ -185,10 +185,9 @@
                 class="project-cover"
               />
               <span class="project-card-title">PotatoLiz - POS System</span>
-              <span class="project-view-hint">
-                <i class="fa-solid fa-eye"></i>
-                <span>View Project</span>
-              </span>
+              <span class="project-view-hint"
+                ><i class="fa-solid fa-eye"></i><span>View Project</span></span
+              >
             </button>
 
             <button
@@ -204,10 +203,9 @@
               <span class="project-card-title"
                 >DentaLiz - Dental Practice Management</span
               >
-              <span class="project-view-hint">
-                <i class="fa-solid fa-eye"></i>
-                <span>View Project</span>
-              </span>
+              <span class="project-view-hint"
+                ><i class="fa-solid fa-eye"></i><span>View Project</span></span
+              >
             </button>
 
             <button
@@ -220,10 +218,9 @@
                 alt="ReeLiz home page"
                 class="project-cover"
               />
-              <span class="project-view-hint">
-                <i class="fa-solid fa-eye"></i>
-                <span>View Project</span>
-              </span>
+              <span class="project-view-hint"
+                ><i class="fa-solid fa-eye"></i><span>View Project</span></span
+              >
               <span class="project-card-title"
                 >ReeLiz - Movie Listing and Booking</span
               >
@@ -239,10 +236,9 @@
                 alt="NutriLiz home screen"
                 class="project-cover"
               />
-              <span class="project-view-hint">
-                <i class="fa-solid fa-eye"></i>
-                <span>View Project</span>
-              </span>
+              <span class="project-view-hint"
+                ><i class="fa-solid fa-eye"></i><span>View Project</span></span
+              >
               <span class="project-card-title"
                 >NutriLiz - Mobile App and Kiosk</span
               >
@@ -368,33 +364,60 @@
 
         <h3 id="projectModalTitle"></h3>
 
-        <div class="project-carousel">
-          <button
-            class="carousel-arrow"
-            id="carouselPrev"
-            type="button"
-            aria-label="Previous image"
-          >
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
+        <div class="project-modal-content">
+          <div class="project-carousel">
+            <button
+              class="carousel-arrow"
+              id="carouselPrev"
+              type="button"
+              aria-label="Previous image"
+            >
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
 
-          <figure class="carousel-frame">
-            <img id="carouselImage" src="" alt="" />
-            <figcaption id="carouselDescription"></figcaption>
-            <div class="swipe-hint" aria-hidden="true">
-              <i class="fa-solid fa-hand-pointer"></i>
-              <span>Swipe to change</span>
+            <figure class="carousel-frame">
+              <img id="carouselImage" src="" alt="" />
+              <div class="swipe-hint" aria-hidden="true">
+                <i class="fa-solid fa-hand-pointer"></i>
+                <span>Swipe to change</span>
+              </div>
+            </figure>
+
+            <button
+              class="carousel-arrow"
+              id="carouselNext"
+              type="button"
+              aria-label="Next image"
+            >
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+
+          <aside
+            class="dentaliz-modal-details"
+            id="dentalizModalDetails"
+            hidden
+          >
+            <p class="project-kicker">Project overview</p>
+            <h4>DentaLiz</h4>
+            <p>
+              A dental practice management system for organizing clinic records,
+              appointments, analytics, and financial reporting.
+            </p>
+            <div class="stack-heading">
+              <span>Technology stack</span
+              ><i class="fa-solid fa-layer-group" aria-hidden="true"></i>
             </div>
-          </figure>
-
-          <button
-            class="carousel-arrow"
-            id="carouselNext"
-            type="button"
-            aria-label="Next image"
-          >
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
+            <div class="dentaliz-stack">
+              <span>.NET 7.0</span><span>Windows Forms</span><span>C#</span>
+              <span>Guna.UI2.WinForms 2.0.4.6</span
+              ><span>iTextSharp 5.5.13.3</span> <span>LiveCharts 0.9.7</span
+              ><span>LiveCharts.WinForms 0.9.7.1</span>
+              <span>MySql.Data 8.3.0</span><span>NuGet.Frameworks 6.9.1</span>
+              <span>Sipeal framework 1.1.0</span
+              ><span>WinForms.DataVisualization 1.9.2</span><span>WinExe</span>
+            </div>
+          </aside>
         </div>
 
         <div class="modal-pagination" aria-label="Slide pagination">
