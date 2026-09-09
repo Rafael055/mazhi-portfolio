@@ -806,11 +806,14 @@ main {
 }
 
 .modal-pagination {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 10px;
-  margin-top: 14px;
+  transform: translateX(-50%);
 }
 
 .modal-dot {
@@ -976,6 +979,7 @@ main {
 }
 
 .carousel-frame {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
