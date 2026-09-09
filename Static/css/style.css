@@ -808,7 +808,7 @@ main {
 .modal-pagination {
   position: absolute;
   left: 50%;
-  bottom: 16px;
+  bottom: 2px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
