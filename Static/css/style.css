@@ -805,7 +805,7 @@ main {
   z-index: 1200;
 }
 
-.modal-pagination {
+.modal-pagination { 
   position: absolute;
   left: 50%;
   bottom: 2px;
